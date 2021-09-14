@@ -1,2 +1,12 @@
+drop database if exists test;
+drop database if exists test01;
+drop database if exists `test02 `;
+drop database if exists test03;
+drop database if exists test04;
+drop database if exists test05;
+drop database if exists `测试数据库`;
+drop database if exists t01234567890123456789012345678901234567890123456789012345678901234567890123456789;
+create database test01;
 drop database test01;
-drop database IF EXISTS test02;
+show databases;
+Database

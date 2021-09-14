@@ -1,3 +1,4 @@
+drop database if exists test;
 drop database if exists test01;
 drop database if exists `test02 `;
 drop database if exists test03;
