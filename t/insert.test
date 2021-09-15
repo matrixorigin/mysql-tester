@@ -1,5 +1,5 @@
 drop table if exists names;
-create table names(id INT(10) PRIMARY KEY AUTO_INCREMENT,name VARCHAR(255) UNIQUE,age INT(10));
+create table names(id int PRIMARY KEY AUTO_INCREMENT,name VARCHAR(255) UNIQUE,age int);
 insert into names(name, age) values("Abby", 24);
 insert into names(name, age) values("Bob", 25);
 insert into names(name, age) values("Carol", 23);
