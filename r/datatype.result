@@ -54,7 +54,7 @@ insert into names(name, age) values('Carol', "23");
 insert into names(name, age) values("Dora", "29");
 select name,age from names;
 name	age
-Abby	24
-Bob	25
+Abby  24
+Bob 25
 Carol	23
 Dora	29
