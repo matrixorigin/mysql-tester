@@ -14,6 +14,7 @@ SELECT userID as a, MIN(score) as b FROM t1 GROUP BY userID;
 SELECT userID as user, MAX(score) as max FROM t1 GROUP BY userID order by user;
 select userID,count(score) from t1 group by userID having count(score)>1;
 select userID,count(score) from t1 where userID>2 group by userID having count(score)>1;
+select userID,count(score) from t1 group by userID having count(score)>1;
 SELECT distinct userID, count(score) FROM t1 GROUP BY userID;
 select distinct spID,userID from t1;
 select distinct spID,userID from t1 where score>2;
@@ -24,5 +25,4 @@ select distinct sum(spID) as sum from t1 where score>1 group by userID order by 
 select userID,MAX(score) from t1 where userID between 2 and 3 group by userID;
 select userID,MAX(score) from t1 where userID not between 2 and 3 group by userID order by userID desc;
 select spID,userID,score from t1 limit 2,1;
-select spID,userID,score from t1 limit 2;
-select spID,userID,score from t1 limit 2 offset 1;
+select spID,userID,score from t1  limit 2 offset 1;
