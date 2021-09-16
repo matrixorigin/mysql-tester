@@ -10,3 +10,4 @@ create database test01;
 drop database test01;
 show databases;
 Database
+drop_database

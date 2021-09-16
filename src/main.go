@@ -229,6 +229,7 @@ func (t *tester) postProcess() {
 }
 
 func (t *tester) Run() error {
+	fmt.Printf("=== RUN %s:\n", t.name)
 	t.preProcess()
 	defer t.postProcess()
 	queries, err := t.loadQueries()
@@ -332,7 +333,7 @@ func (t *tester) Run() error {
 		}
 	}
 
-	fmt.Printf("%s: ok! %d test cases passed, take time %v s\n", t.testFileName(), testCnt, time.Since(startTime).Seconds())
+	fmt.Printf("--- PASS %s: %d test cases passed, take time %v s\n", t.name, testCnt, time.Since(startTime).Seconds())
 
 	return t.flushResult()
 }
