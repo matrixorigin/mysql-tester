@@ -1,0 +1,88 @@
+drop table if exists t1;
+CREATE TABLE t1 (spID int,userID int,score int);
+INSERT INTO t1 VALUES (1,1,1);
+INSERT INTO t1 VALUES (2,2,2);
+INSERT INTO t1 VALUES (2,1,4);
+INSERT INTO t1 VALUES (3,3,3);
+INSERT INTO t1 VALUES (1,1,5);
+INSERT INTO t1 VALUES (4,6,10);
+INSERT INTO t1 VALUES (5,11,99);
+CREATE TABLE t2(product VARCHAR(32),country_id INTEGER NOT NULL,year INTEGER,profit INTEGER);
+INSERT INTO t2 VALUES ( 'Computer', 2,2000, 1200),
+( 'TV', 1, 1999, 150),
+( 'Calculator', 1, 1999,50),
+( 'Computer', 1, 1999,1500),
+( 'Computer', 1, 2000,1500),
+( 'TV', 1, 2000, 150),
+( 'TV', 2, 2000, 100),
+( 'TV', 2, 2000, 100),
+( 'Calculator', 1, 2000,75),
+( 'Calculator', 2, 2000,75),
+( 'TV', 1, 1999, 100),
+( 'Computer', 1, 1999,1200),
+( 'Computer', 2, 2000,1500),
+( 'Calculator', 2, 2000,75),
+( 'Phone', 3, 2003,10);
+select userID,spID,score from t1 where userID=spID and userID<>score;
+userID	spID	score
+1	1	5
+select userID,spID,score from t1 where userID=spID and userID!=score;
+userID	spID	score
+1	1	5
+select userID,spID,score from t1 where userID between spID and score;
+userID	spID	score
+1	1	1
+2	2	2
+3	3	3
+1	1	5
+6	4	10
+11	5	99
+select userID,spID,score from t1 where userID not between spID and score;
+userID	spID	score
+1	2	4
+select userID,spID,score from t1 where spID>=userID*score;
+userID	spID	score
+1	1	1
+select userID,score,spID from t1 where userID<=score/spID;
+userID	score	spID
+1	1	1
+1	4	2
+1	5	1
+11	99	5
+select spID,userID,score from t1 where spID>(userID-1);
+spID	userID	score
+1	1	1
+2	2	2
+2	1	4
+3	3	3
+1	1	5
+select spID,userID,score from t1 where score<(spID*userID+1);
+spID	userID	score
+1	1	1
+2	2	2
+3	3	3
+4	6	10
+SELECT product, SUM(profit) FROM t2 where year>1999 GROUP BY product order by product desc;
+product	sum(profit)
+TV	350
+Phone	10
+Computer	4200
+Calculator	225
+SELECT product, SUM(profit),AVG(profit) FROM t2 where product!='TV' GROUP BY product order by product asc;
+product	sum(profit)	avg(profit)
+Calculator	275	68.7500
+Computer	6900	1380.0000
+Phone	10	10.0000
+SELECT product, SUM(profit),AVG(profit) FROM t2 where product<>'TV' GROUP BY product order by product asc;
+product	sum(profit)	avg(profit)
+Calculator	275	68.7500
+Computer	6900	1380.0000
+Phone	10	10.0000
+SELECT product, SUM(profit),AVG(profit) FROM t2 where product='Phone' GROUP BY product order by product asc;
+product	sum(profit)	avg(profit)
+Phone	10	10.0000
+SELECT product, SUM(profit) FROM t2 where year>1999 and year<=2002 GROUP BY product order by product desc;
+product	sum(profit)
+TV	350
+Computer	4200
+Calculator	225
