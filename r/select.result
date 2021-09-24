@@ -124,3 +124,12 @@ select spID,userID,score from t1  limit 2 offset 1;
 spID	userID	score
 2	2	2
 2	1	4
+select userID, userID DIV 2 as user_dir, userID%2 as user_percent, userID MOD 2 as user_mod from t1;
+userID	user_dir	user_percent	user_mod
+1	0	1	1
+2	1	0	0
+1	0	1	1
+3	1	1	1
+1	0	1	1
+6	3	0	0
+11	5	1	1
