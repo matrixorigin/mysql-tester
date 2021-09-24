@@ -26,3 +26,4 @@ select userID,MAX(score) from t1 where userID between 2 and 3 group by userID;
 select userID,MAX(score) from t1 where userID not between 2 and 3 group by userID order by userID desc;
 select spID,userID,score from t1 limit 2,1;
 select spID,userID,score from t1  limit 2 offset 1;
+select userID, userID DIV 2 as user_dir, userID%2 as user_percent, userID MOD 2 as user_mod from t1;

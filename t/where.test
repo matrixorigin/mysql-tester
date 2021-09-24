@@ -1,0 +1,22 @@
+drop table if exists t1;
+CREATE TABLE t1 (spID int,userID int,score smallint);
+INSERT INTO t1 VALUES (1,1,1);
+INSERT INTO t1 VALUES (2,2,2);
+INSERT INTO t1 VALUES (2,1,4);
+INSERT INTO t1 VALUES (3,3,3);
+INSERT INTO t1 VALUES (1,1,5);
+INSERT INTO t1 VALUES (4,6,10);
+INSERT INTO t1 VALUES (5,11,99);
+drop table if exists t2;
+create table t2(c1 int, c2 int);
+insert into t2 values (-3, 2);
+insert into t2 values (1, 2);
+select userID,MAX(score) max_score from t1 where userID <2 || userID > 3 group by userID order by max_score;
+select userID, userID DIV 2 as user_dir, userID%2 as user_percent, userID MOD 2 as user_mod from t1 WHERE userID > 3 ;
+select CAST(userID AS CHAR) userid_cast, userID from t1 where CAST(spID AS CHAR)='1';
+select CAST(userID AS DOUBLE) cast_double, CAST(userID AS FLOAT(3)) cast_float , CAST(userID AS REAL) cast_real, CAST(userID AS SIGNED) cast_signed, CAST(userID AS UNSIGNED) cast_unsigned from t1 limit 2;
+select * from t1 where spID>2 AND userID <2 || userID >=2 OR userID < 2 limit 3;
+select * from t1 where (spID >2  or spID <= 2) && score <> 1 AND userID/2>2;
+select * from t1 where spID >2  || spID <= 2 && score !=1 limit 3;
+select c1, -c2 from t2 order by -c1 desc;
+
