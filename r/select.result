@@ -42,6 +42,13 @@ user	max
 3	3
 6	10
 11	99
+SELECT userID as user, MAX(score) as max FROM t1 GROUP BY userID order by max desc;
+user	max
+11	99
+6	10
+1	5
+3	3
+2	2
 select userID,count(score) from t1 group by userID having count(score)>1;
 userID	count(score)
 11	1
@@ -90,6 +97,11 @@ spID	userID
 3	3
 4	6
 5	11
+select distinct spID,userID from t1 where spID>2 order by userID desc;
+spID	userID
+5	11
+4	6
+3	3
 select distinct sum(spID) from t1 group by userID;
 sum(spID)
 4
@@ -120,10 +132,12 @@ userID	max(score)
 select spID,userID,score from t1 limit 2,1;
 spID	userID	score
 2	1	4
-select spID,userID,score from t1  limit 2 offset 1;
+select spID,userID,score from t1 limit 2 offset 1;
 spID	userID	score
 2	2	2
 2	1	4
+select sum(score) as sum from t1 where spID=6 group by score order by sum desc;
+sum
 select userID, userID DIV 2 as user_dir, userID%2 as user_percent, userID MOD 2 as user_mod from t1;
 userID	user_dir	user_percent	user_mod
 1	0	1	1
@@ -133,3 +147,18 @@ userID	user_dir	user_percent	user_mod
 1	0	1	1
 6	3	0	0
 11	5	1	1
+drop table if exists a;
+create table a(a int);
+insert into a values(1),(2),(3),(4),(5),(6),(7),(8);
+select count(*) from a where a>=2 and a<=8;
+count(*)
+7
+drop table if exists t1;
+CREATE table t1 ( id int, name varchar(50) );
+INSERT INTO t1 VALUES (1, 'aaaaa');
+INSERT INTO t1 VALUES (3, "aaaaa");
+INSERT INTO t1 VALUES (2, 'eeeeeee');
+select distinct name as name1 from t1;
+name1
+eeeeeee
+aaaaa

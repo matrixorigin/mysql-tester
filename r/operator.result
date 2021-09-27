@@ -40,6 +40,10 @@ userID	spID	score
 select userID,spID,score from t1 where userID not between spID and score;
 userID	spID	score
 1	2	4
+select * from t1 where userID between 3 and 6;
+spID	userID	score
+3	3	3
+4	6	10
 select userID,spID,score from t1 where spID>=userID*score;
 userID	spID	score
 1	1	1
@@ -62,6 +66,10 @@ spID	userID	score
 2	2	2
 3	3	3
 4	6	10
+SELECT userID, AVG(score) FROM t1 WHERE spID=2 GROUP BY userID;
+userID	avg(score)
+2	2.0000
+1	4.0000
 SELECT product, SUM(profit) FROM t2 where year>1999 GROUP BY product order by product desc;
 product	sum(profit)
 TV	350
@@ -86,3 +94,12 @@ product	sum(profit)
 TV	350
 Computer	4200
 Calculator	225
+select * from t1 where 2<10;
+spID	userID	score
+1	1	1
+2	2	2
+2	1	4
+3	3	3
+1	1	5
+4	6	10
+5	11	99
