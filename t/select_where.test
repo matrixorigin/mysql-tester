@@ -19,4 +19,6 @@ select * from t1 where spID>2 AND userID <2 || userID >=2 OR userID < 2 limit 3;
 select * from t1 where (spID >2  or spID <= 2) && score <> 1 AND userID/2>2;
 select * from t1 where spID >2  || spID <= 2 && score !=1 limit 3;
 select c1, -c2 from t2 order by -c1 desc;
-
+create table t10(a int,b varchar(10),c varchar(10));
+insert into t10 values(1,'ab','cd'),(2,'ba','dc'),(3,'bc','de'),(4,'cb','ed'),(5,'cd','ef'),(6,'dc','fe'),(2,'de','fg'),(1,'ed','gf');
+select * from t10 where (b='ba' or b='cb') and (c='dc' or c='ed');
