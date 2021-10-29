@@ -789,6 +789,10 @@ func (t *tester) executeStmt(query string) error {
 		} else {
 			raw, err = t.tx.Query(query)
 		}
+		if err != nil {
+			return errors.Trace(err)
+		}
+
 		rows, err := dumpToByteRows(raw)
 		if err != nil {
 			return errors.Trace(err)
