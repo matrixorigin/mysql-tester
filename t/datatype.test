@@ -27,6 +27,7 @@ select a,b,c,d from numtable;
 drop table if exists numtable;
 create table numtable(a tinyint signed, b smallint signed, c int signed, d bigint signed);
 insert into numtable values(127,32767,2147483647,9223372036854775807);
+insert into numtable values(-128,-32768,-2147483648,-9223372036854775808);
 select a,b,c,d from numtable;
 drop table if exists names;
 create table names(name varchar(255),age char(255));

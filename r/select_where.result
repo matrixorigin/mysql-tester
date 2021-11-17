@@ -52,3 +52,12 @@ select * from t10 where (b='ba' or b='cb') and (c='dc' or c='ed');
 a	b	c
 2	ba	dc
 4	cb	ed
+select userID,MAX(score) max_score from t1 where userID <2 || userID > 3 group by userID order by max_score;
+userID	max_score
+1	5
+6	10
+11	99
+select * from t1 where userID/2>2;
+spID	userID	score
+4	6	10
+5	11	99

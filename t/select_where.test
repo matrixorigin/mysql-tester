@@ -22,3 +22,5 @@ select c1, -c2 from t2 order by -c1 desc;
 create table t10(a int,b varchar(10),c varchar(10));
 insert into t10 values(1,'ab','cd'),(2,'ba','dc'),(3,'bc','de'),(4,'cb','ed'),(5,'cd','ef'),(6,'dc','fe'),(2,'de','fg'),(1,'ed','gf');
 select * from t10 where (b='ba' or b='cb') and (c='dc' or c='ed');
+select userID,MAX(score) max_score from t1 where userID <2 || userID > 3 group by userID order by max_score;
+select * from t1 where userID/2>2;

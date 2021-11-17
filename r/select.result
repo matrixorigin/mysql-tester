@@ -162,3 +162,10 @@ select distinct name as name1 from t1;
 name1
 eeeeeee
 aaaaa
+create table pet(name char(10),owner char(10), species char(10), gender char(1), weight float,age int);
+INSERT INTO pet VALUES ('Sunsweet01','Dsant01','otter','f',30.11,2), ('Sunsweet02','Dsant02','otter','m',30.11,3);
+INSERT INTO pet(name, owner, species, gender, weight, age) VALUES ('Sunsweet03','Dsant01','otter','f',30.11,2), ('Sunsweet04','Dsant02','otter','m',30.11,3);
+select * from pet limit 2, 18446744073709551615;
+name    owner   species gender  weight  age
+Sunsweet03      Dsant01 otter   f       30.11002
+Sunsweet04      Dsant02 otter   m       30.11003

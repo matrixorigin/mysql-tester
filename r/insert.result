@@ -25,3 +25,13 @@ id	name	age
 1	Abby	20
 2	Bob	21
 1	Amy	22
+drop table if exists pet;
+create table pet(name char(10),owner char(10), species char(10), gender char(1), weight float,age int);
+INSERT INTO pet VALUES ('Sunsweet01','Dsant01','otter','f',30.11,2), ('Sunsweet02','Dsant02','otter','m',30.11,3);
+INSERT INTO pet(name, owner, species, gender, weight, age) VALUES ('Sunsweet03','Dsant01','otter','f',30.11,2), ('Sunsweet04','Dsant02','otter','m',30.11,3);
+select * from pet;
+name	owner	species	gender	weight	age 
+Sunsweet01	Dsant01	otter	f	30.11002
+Sunsweet02	Dsant02	otter	m	30.11003
+Sunsweet03	Dsant01	otter	f	30.11002
+Sunsweet04	Dsant02	otter	m	30.11003
