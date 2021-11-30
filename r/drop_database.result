@@ -9,5 +9,5 @@ drop database if exists t0123456789012345678901234567890123456789012345678901234
 create database test01;
 drop database test01;
 show databases;
-Database
+Databases
 drop_database

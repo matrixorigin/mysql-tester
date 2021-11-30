@@ -17,7 +17,7 @@ create table $table18 (a$1 int, $b int, c$ int);
 create table table19$ (a int);
 create table table17 (`index` int);
 show tables;
-Table
+Tables
 table01
 table15
 table05
