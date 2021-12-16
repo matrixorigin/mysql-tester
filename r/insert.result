@@ -17,21 +17,22 @@ select * from weights;
 a
 1
 drop table if exists test;
-create table test(id int primary key, name varchar(10), age int );
+create table test(id int primary key, name varchar(10), age int);
 insert into test values(1, 'Abby', 20);
 insert into test values(2, 'Bob', 21);
 select id,name,age from test;
 id	name	age
 1	Abby	20
 2	Bob	21
-1	Amy	22
 drop table if exists pet;
 create table pet(name char(10),owner char(10), species char(10), gender char(1), weight float,age int);
-INSERT INTO pet VALUES ('Sunsweet01','Dsant01','otter','f',30.11,2), ('Sunsweet02','Dsant02','otter','m',30.11,3);
-INSERT INTO pet(name, owner, species, gender, weight, age) VALUES ('Sunsweet03','Dsant01','otter','f',30.11,2), ('Sunsweet04','Dsant02','otter','m',30.11,3);
+insert into pet values ('Sunsweet01','Dsant01','otter','f',30.11,2),
+('Sunsweet02','Dsant02','otter','m',30.11,3);
+insert into pet(name, owner, species, gender, weight, age) values ('Sunsweet03','Dsant01','otter','f',30.11,2),
+('Sunsweet04','Dsant02','otter','m',30.11,3);
 select * from pet;
-name	owner	species	gender	weight	age 
-Sunsweet01	Dsant01	otter	f	30.11002
-Sunsweet02	Dsant02	otter	m	30.11003
-Sunsweet03	Dsant01	otter	f	30.11002
-Sunsweet04	Dsant02	otter	m	30.11003
+name	owner	species	gender	weight	age
+Sunsweet01	Dsant01	otter	f	30.1100	2
+Sunsweet02	Dsant02	otter	m	30.1100	3
+Sunsweet03	Dsant01	otter	f	30.1100	2
+Sunsweet04	Dsant02	otter	m	30.1100	3

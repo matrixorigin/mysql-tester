@@ -60,12 +60,3 @@ Abby	24
 Bob	25
 Carol	23
 Dora	29
-select spID+score from t1; 
-spID+score
-2 
-4 
-6 
-6 
-6 
-14 
-104 
