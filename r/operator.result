@@ -105,8 +105,8 @@ spID	userID	score
 5	11	99
 select userID, userID DIV 2 as user_div, userID%2 as user_percent, userID MOD 2 as user_mod from t1 WHERE userID > 3;
 userID	user_div	user_percent	user_mod
-6	3.0000	0	0
-11	5.5000	1	1
+6	3	0	0
+11	5	1	1
 select * from t1 where userID-2>2 && (userID+spID)/3<>0 && score MOD 2 > 0;
 spID	userID	score
 5	11	99

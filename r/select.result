@@ -120,13 +120,13 @@ select sum(score) as sum from t1 where spID=6 group by score order by sum desc;
 sum
 select userID, userID DIV 2 as user_dir, userID%2 as user_percent, userID MOD 2 as user_mod from t1;
 userID	user_dir	user_percent	user_mod
-1	0.5000	1	1
-2	1.0000	0	0
-1	0.5000	1	1
-3	1.5000	1	1
-1	0.5000	1	1
-6	3.0000	0	0
-11	5.5000	1	1
+1	0	1	1
+2	1	0	0
+1	0	1	1
+3	1	1	1
+1	0	1	1
+6	3	0	0
+11	5	1	1
 drop table if exists a;
 create table a(a int);
 insert into a values(1),(2),(3),(4),(5),(6),(7),(8);
@@ -166,8 +166,8 @@ userID	max_score
 11	99
 select userID, userID DIV 2 as user_dir, userID%2 as user_percent, userID MOD 2 as user_mod from t3 where userID > 3 ;
 userID	user_dir	user_percent	user_mod
-6	3.0000	0	0
-11	5.5000	1	1
+6	3	0	0
+11	5	1	1
 select CAST(userID AS CHAR) userid_cast, userID from t3 where CAST(spID AS CHAR)='1';
 userid_cast	userID
 1	1
