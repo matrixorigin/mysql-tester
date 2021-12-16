@@ -7,7 +7,7 @@ show tables;
 Tables
 t1
 t2
-show tables from test01 where tables_in_test01 like '%t2%';
+show tables from test01;
 Tables
 t1
 t2

@@ -28,7 +28,6 @@ import (
 	"time"
 
 	"github.com/go-sql-driver/mysql"
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/pingcap/errors"
 	"github.com/pingcap/parser"
 	"github.com/pingcap/parser/ast"
@@ -200,9 +199,8 @@ func (t *tester) preProcess() {
 		log.Fatalf("Open db err %v", err)
 	}
 
-	log.Warn("Create new db", mdb)
-
-	if _, err = mdb.Exec(fmt.Sprintf("create database `%s`", t.name)); err != nil {
+	log.Infof("create default database [%v] for testing", t.name)
+	if _, err = mdb.Exec(fmt.Sprintf("create database if not exists `%s`", t.name)); err != nil {
 		log.Fatalf("Executing create db %s err[%v]", t.name, err)
 	}
 
@@ -222,7 +220,7 @@ func (t *tester) preProcess() {
 }
 
 func (t *tester) postProcess() {
-	t.mdb.Exec(fmt.Sprintf("drop database `%s`", t.name))
+	t.mdb.Exec(fmt.Sprintf("drop database if exists `%s`", t.name))
 	for _, v := range t.conn {
 		v.mdb.Close()
 	}
