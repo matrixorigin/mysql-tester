@@ -11,3 +11,7 @@ show tables from test01;
 Tables
 t1
 t2
+show columns from t1;
+Filed	Type	Null	Key	Default	Extra
+id	int(32)				
+str	varchar(10)			NULL	
