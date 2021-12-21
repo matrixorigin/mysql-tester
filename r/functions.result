@@ -24,6 +24,14 @@ c1
 select sum(col_1d) from tbl1 where col_1d > 10;
 sum(col_1d)
 23
+select sum(col_1c)+count(col_1c)-avg(col_1c)*min(col_1c)/max(col_1c)%min(col_1c)+max(col_1c) as func from tbl1 group by col_1c;
+func
+3.0000
+5.0000
+7.0000
+9.0000
+11.0000
+13.0000
 CREATE TABLE t1 (spID int,userID int,score smallint);
 INSERT INTO t1 VALUES (1,1,1);
 INSERT INTO t1 VALUES (2,2,2);

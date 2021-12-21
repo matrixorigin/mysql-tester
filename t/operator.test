@@ -48,3 +48,28 @@ insert into t2 values (-3, 2);
 insert into t2 values (1, 2);
 select -c1 from t2;
 select c1, c2 from t2 order by -c1 desc;
+drop table if exists t3;
+create table t3 (c1 varchar(80));
+insert into t3 values ("a"),
+("abc"),
+("abcd"),
+("hello"),
+("test"),
+("C:\Program Files(x86)"),
+("C:\\Program Files(x86)");
+select * from t3;
+create database if not exists likedb;
+create database if not exists dblike;
+show databases like 'like%';
+show databases like "%like%";
+show databases like "%aa%";
+drop database likedb;
+drop database dblike;
+drop table if exists t1;
+create table t1 (a int);
+insert into t1 values (0),(1),(NULL);
+select * from t1;
+select * from t1 where not a between 2 and 3;
+SELECT * FROM t1 where t1.userID<6 OR NOT t1.userID;
+SELECT * FROM t1 where NOT t1.userID OR t1.userID<6;
+SELECT * FROM t1 where NOT t1.userID || t1.userID<6;

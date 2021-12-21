@@ -10,6 +10,7 @@ select sum(col_1a),count(col_1b),avg(col_1c),min(col_1d),max(col_1d) from tbl1;
 select sum(col_1d) as s1,count(col_1d) as c2,avg(col_1d) as a3,min(col_1d) as m4,max(col_1d) as m5 from tbl1 group by col_1e order by s1 desc;
 select sum(col_1d) as c1 from tbl1 where col_1d < 13 group by col_1e order by c1;
 select sum(col_1d) from tbl1 where col_1d > 10;
+select sum(col_1c)+count(col_1c)-avg(col_1c)*min(col_1c)/max(col_1c)%min(col_1c)+max(col_1c) as func from tbl1 group by col_1c;
 CREATE TABLE t1 (spID int,userID int,score smallint);
 INSERT INTO t1 VALUES (1,1,1);
 INSERT INTO t1 VALUES (2,2,2);

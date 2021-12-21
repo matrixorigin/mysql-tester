@@ -214,3 +214,20 @@ select * from t5 where (b='ba' or b='cb') and (c='dc' or c='ed');
 a	b	c
 2	ba	dc
 4	cb	ed
+drop table if exists tbl_01;
+create table tbl_01 (col1 int, a bigint unsigned, c char(10) not null);
+insert into tbl_01 values (1,1,"a");
+insert into tbl_01 values (2,2,"b");
+insert into tbl_01 values (2,3,"c");
+insert into tbl_01 values (3,4,"E");
+insert into tbl_01 values (3,5,"C");
+insert into tbl_01 values (3,6,"D");
+select a,c,sum(a) from tbl_01 group by a;
+a	c	sum(a)
+1	a	1
+2	b	2
+3	c	3
+4	E	4
+5	C	5
+6	D	6
+

@@ -125,3 +125,64 @@ select c1, c2 from t2 order by -c1 desc;
 c1	c2
 -3	2
 1	2
+drop table if exists t3;
+create table t3 (c1 varchar(80));
+insert into t3 values ("a"),
+("abc"),
+("abcd"),
+("hello"),
+("test"),
+("C:\Program Files(x86)"),
+("C:\\Program Files(x86)");
+select * from t3;
+c1
+a
+abc
+abcd
+hello
+test
+C:Program Files(x86)
+C:\Program Files(x86)
+create database if not exists likedb;
+create database if not exists dblike;
+show databases like 'like%';
+Databases
+likedb
+show databases like "%like%";
+Databases
+likedb
+dblike
+show databases like "%aa%";
+Databases
+drop database likedb;
+drop database dblike;
+select * from t1;
+a
+0
+1
+NULL
+select * from t1 where not a between 2 and 3;
+a
+0
+1
+SELECT * FROM t1 where t1.userID<6 OR NOT t1.userID;
+spID	userID	score
+1	1	1
+2	2	2
+2	1	4
+3	3	3
+1	1	5
+SELECT * FROM t1 where NOT t1.userID OR t1.userID<6;
+spID	userID	score
+1	1	1
+2	2	2
+2	1	4
+3	3	3
+1	1	5
+SELECT * FROM t1 where NOT t1.userID || t1.userID<6;
+spID	userID	score
+1	1	1
+2	2	2
+2	1	4
+3	3	3
+1	1	5
