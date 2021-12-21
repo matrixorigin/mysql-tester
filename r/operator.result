@@ -156,14 +156,6 @@ show databases like "%aa%";
 Databases
 drop database likedb;
 drop database dblike;
-drop table if exists t1;
-create table t1 (a int);
-insert into t1 values (0),(1),(NULL);
-select * from t1;
-a
-0
-1
-NULL
 select * from t1 where not a between 2 and 3;
 a
 0
@@ -189,3 +181,11 @@ spID	userID	score
 2	1	4
 3	3	3
 1	1	5
+drop table if exists t1;
+create table t1 (a int);
+insert into t1 values (0),(1),(NULL);
+select * from t1;
+a
+0
+1
+NULL
