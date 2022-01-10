@@ -189,3 +189,30 @@ select * from t1 where not a between 2 and 3;
 a
 0
 1
+drop table if exists t3;
+CREATE TABLE t3(
+cont_nr int(11) NOT NULL auto_increment primary key,
+ver_nr int(11) NOT NULL default 0,
+aufnr int(11) NOT NULL default 0,
+username varchar(50) NOT NULL default ''
+);
+INSERT INTO t3 VALUES (3359356,405,3359356,'Mustermann Musterfrau');
+INSERT INTO t3 VALUES (3359357,468,3359357,'Mustermann Musterfrau');
+INSERT INTO t3 VALUES (3359359,468,3359359,'Mustermann musterfrau');
+INSERT INTO t3 VALUES (3359360,0,0,'Mustermann Masterfrau');
+INSERT INTO t3 VALUES (3359361,406,3359361,'Mastermann Masterfrau');
+INSERT INTO t3 VALUES (3359362,406,3359362,'Mustermann MusterFrau');
+select username from t3 where username like 'Ma%';
+username
+Mastermann Masterfrau
+select username from t3 where username like '%Frau';
+username
+Mustermann MusterFrau
+select username from t3 where username like '%Mast%';
+username
+Mustermann Masterfrau
+Mastermann Masterfrau
+select username from t3 where username like '%a_t%';
+username
+Mustermann Masterfrau
+Mastermann Masterfrau
