@@ -36,3 +36,22 @@ Sunsweet01	Dsant01	otter	f	30.1100	2
 Sunsweet02	Dsant02	otter	m	30.1100	3
 Sunsweet03	Dsant01	otter	f	30.1100	2
 Sunsweet04	Dsant02	otter	m	30.1100	3
+drop table if exists t1;
+create table t1 (a bigint unsigned not null, primary key(a));
+insert into t1 values (18446744073709551615), (0xFFFFFFFFFFFFFFFE), (18446744073709551613), (18446744073709551612);
+select * from t1;
+a
+18446744073709551615
+18446744073709551614
+18446744073709551613
+18446744073709551612
+drop table if exists t1;
+create table t1 (name char(20) not null primary key ) charset latin1;
+insert into t1 values ("å");
+insert into t1 values ("ä");
+insert into t1 values ("ö");
+select * from t1 order by name;
+name
+ä
+å
+ö
