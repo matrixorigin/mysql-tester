@@ -52,3 +52,4 @@ select a,sum(floor(b)) from t1 group by a order by a;
 select a,floor(b) as floorb from t1 order by floorb desc;
 select a,avg(round(b)) as roundb from t1 where a>3 group by a order by roundb;
 select a,avg(round(b)) as roundb from t1 where a in (3,5,7) group by a order by roundb;
+select a,round(b,2),max(b) from t1 group by b order by a;
