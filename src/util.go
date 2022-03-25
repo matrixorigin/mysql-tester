@@ -15,7 +15,6 @@
 package main
 
 import (
-	"bytes"
 	"database/sql"
 	"strings"
 	"time"
@@ -85,45 +84,4 @@ func IsQuery(sql string) bool {
 	}
 
 	return false
-}
-
-//
-// IsEqual
-//  @Description:  Assert whether two slice have same length and elements
-//  @param a
-//  @param b
-//  @return bool
-//
-func IsEqual(a, b []byte) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i, v := range a {
-		if v != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
-//
-// NormalizeNewlines
-//  @Description:
-//  @param d
-//  @return []byte
-//
-func NormalizeNewlines(d []byte) []byte {
-	// replace CR LF \r\n (windows) with LF \n (unix)
-	d = bytes.Replace(d, []byte{13, 10}, []byte{10}, -1)
-	// replace CF \r (mac) with LF \n (unix)
-	d = bytes.Replace(d, []byte{13}, []byte{10}, -1)
-	return d
-}
-
-func TrimCRLF(d []byte) []byte {
-	// replace CR LF \r\n (windows) with LF \n (unix)
-	d = bytes.Trim(d, "\r")
-	// replace CF \r (mac) with LF \n (unix)
-	d = bytes.Trim(d, "\n")
-	return d
 }
