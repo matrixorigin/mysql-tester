@@ -49,6 +49,7 @@ var (
 	all           bool
 	reserveSchema bool
 	xmlPath       string
+	useTx		  bool
 )
 
 func init() {
@@ -59,9 +60,10 @@ func init() {
 	flag.StringVar(&logLevel, "log-level", "error", "The log level of mysql-tester: info, warn, error, debug.")
 	flag.BoolVar(&record, "record", false, "Whether to record the test output to the result file.")
 	flag.StringVar(&params, "params", "", "Additional params pass as DSN(e.g. session variable)")
+	flag.BoolVar(&useTx, "use-transaction", false, "Whether to use transaction.")
 	flag.BoolVar(&all, "all", false, "run all tests")
 	flag.BoolVar(&reserveSchema, "reserve-schema", false, "Reserve schema after each test")
-	flag.StringVar(&xmlPath, "xunitfile", "", "The xml file path to record testing results.")
+	flag.StringVar(&xmlPath, "xunitfile", "./result.xml", "The xml file path to record testing results.")
 
 	c := &charset.Charset{
 		Name:             "gbk",
@@ -172,6 +174,7 @@ func isTiDB(db *sql.DB) bool {
 
 func (t *tester) addConnection(connName, hostName, userName, password, db string) {
 	mdb, err := OpenDBWithRetry("mysql", userName+":"+password+"@tcp("+hostName+":"+port+")/"+db+"?time_zone=%27Asia%2FShanghai%27"+params)
+
 	if err != nil {
 		log.Fatalf("Open db err %v", err)
 	}
@@ -626,21 +629,27 @@ func (t *tester) stmtExecute(query query, st ast.StmtNode) (err error) {
 	}
 	switch st.(type) {
 	case *ast.BeginStmt:
-		t.tx, err = t.mdb.Begin()
-		if err != nil {
-			t.rollback()
-			break
+		if useTx {
+			t.tx, err = t.mdb.Begin()
+			if err != nil {
+				t.rollback()
+				break
+			}
 		}
 	case *ast.CommitStmt:
-		err = t.commit()
-		if err != nil {
-			t.rollback()
-			break
+		if useTx {
+			err = t.commit()
+			if err != nil {
+				t.rollback()
+				break
+			}
 		}
 	case *ast.RollbackStmt:
-		err = t.rollback()
-		if err != nil {
-			break
+		if useTx {
+			err = t.rollback()
+			if err != nil {
+				break
+			}
 		}
 	default:
 		if t.tx != nil {
@@ -649,25 +658,33 @@ func (t *tester) stmtExecute(query query, st ast.StmtNode) (err error) {
 				break
 			}
 		} else {
-			// if begin or following commit fails, we don't think
-			// this error is the expected one.
-			if t.tx, err = t.mdb.Begin(); err != nil {
-				t.rollback()
-				break
-			}
-
-			err = t.executeStmt(qText)
-			if err != nil {
-				t.rollback()
-				break
-			} else {
-				commitErr := t.commit()
-				if err == nil && commitErr != nil {
-					err = commitErr
-				}
-				if commitErr != nil {
+			if useTx {
+				// if begin or following commit fails, we don't think
+				// this error is the expected one.
+				if t.tx, err = t.mdb.Begin(); err != nil {
 					t.rollback()
 					break
+				}
+			}
+			err = t.executeStmt(qText)
+			if err != nil {
+				if !useTx {
+					//t.mdb.Exec(fmt.Sprintf("drop database `%s`", t.name))
+					break
+				} else {
+					t.rollback()
+					break
+				}
+			} else {
+				if useTx {
+					commitErr := t.commit()
+					if err == nil && commitErr != nil {
+						err = commitErr
+					}
+					if commitErr != nil {
+						t.rollback()
+						break
+					}
 				}
 			}
 		}
@@ -831,7 +848,14 @@ func dumpToByteRows(rows *sql.Rows) (*byteRows, error) {
 
 func (t *tester) executeStmt(query string) error {
 	if IsQuery(query) {
-		raw, err := t.tx.Query(query)
+		fmt.Println("Query:\t", query)
+		var raw *sql.Rows
+		var err error
+		if !useTx {
+			raw, err = t.mdb.Query(query)
+		} else {
+			raw, err = t.tx.Query(query)
+		}
 		if err != nil {
 			return errors.Trace(err)
 		}
@@ -859,7 +883,13 @@ func (t *tester) executeStmt(query string) error {
 		return t.writeQueryResult(rows)
 	} else {
 		// TODO: rows affected and last insert id
-		_, err := t.tx.Exec(query)
+		fmt.Println("Non Query:", query)
+		var err error
+		if !useTx {
+			_, err = t.mdb.Exec(query)
+		} else {
+			_, err = t.tx.Exec(query)
+		}
 		if err != nil {
 			return errors.Trace(err)
 		}
