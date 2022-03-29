@@ -646,10 +646,15 @@ func (t *tester) execute(query query) error {
 			if _, err = t.resultFD.ReadAt(buf, int64(offset)); err != nil {
 				return errors.Trace(errors.Errorf("run \"%v\" at line %d err, we got \n%s\nbut read result err %s", st.Text(), query.Line, gotBuf, err))
 			}
-			if !bytes.Equal(gotBuf, buf) {
+			if len(buf) == 0 {
+				log.Infof("[Debug]length of buf is 0, maybe something wrong, %s, %v, %v\n", query.Query, query.Line, offset)
+			}
+			if !bytes.Equal(gotBuf, buf) {				
 				log.Infoln("[Debug]query, ", query.Query)
-				log.Infoln("[Debug]buf, ", string(bytes.ReplaceAll(buf, []byte("\n"), []byte(";"))))
-				log.Infoln("[Debug]gotBuf, ", string(bytes.ReplaceAll(gotBuf, []byte("\n"), []byte(";"))))
+				log.Infoln("[Debug]buf, ", buf)
+				log.Infoln("[Debug]gotBuf, ", gotBuf)
+				log.Infoln("[Debug]t.buf, ", t.buf)
+				log.Infoln("[Debug]offset, ", offset)
 				return errors.Trace(errors.Errorf("failed to run query \"%v\" around line %d, \nwe need(%v):\n%s\nbut got(%v):\n%s\n", query.Query, query.Line, len(buf), buf, len(gotBuf), gotBuf))
 			}
 		}
