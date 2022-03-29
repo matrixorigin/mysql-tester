@@ -650,11 +650,11 @@ func (t *tester) execute(query query) error {
 				log.Infof("[Debug]length of buf is 0, maybe something wrong, %s, %v, %v\n", query.Query, query.Line, offset)
 			}
 			if !bytes.Equal(gotBuf, buf) {				
-				log.Infoln("[Debug]query, ", query.Query)
-				log.Infoln("[Debug]buf, ", buf)
-				log.Infoln("[Debug]gotBuf, ", gotBuf)
-				log.Infoln("[Debug]t.buf, ", t.buf)
-				log.Infoln("[Debug]offset, ", offset)
+				log.Infof("[Debug]query, %s\n", query.Query)
+				log.Infof("[Debug]buf, %s\n", buf)
+				log.Infof("[Debug]gotBuf, %s\n", gotBuf)
+				log.Infof("[Debug]t.buf, %s\n", t.buf.Bytes())
+				log.Infof("[Debug]offset, %d\n", offset)
 				return errors.Trace(errors.Errorf("failed to run query \"%v\" around line %d, \nwe need(%v):\n%s\nbut got(%v):\n%s\n", query.Query, query.Line, len(buf), buf, len(gotBuf), gotBuf))
 			}
 		}
