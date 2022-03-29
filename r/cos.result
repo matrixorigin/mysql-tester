@@ -1,0 +1,25 @@
+drop table if exists t1;
+create table t1(a int,b float);
+insert into t1 values(0,0);
+insert into t1 values(0,360),(30,390),(90,450),(180,270),(180,180);
+select cos(a),cos(b) from t1;
+cos(a)	cos(b)
+1.0000	1.0000
+1.0000	-0.2837
+0.1543	0.9037
+-0.4481	-0.7302
+-0.5985	0.9844
+-0.5985	-0.5985
+select cos(a)*cos(b),cos(cos(a)) as c from t1;
+cos(a) * cos(b)	c
+1.0000	0.5403
+-0.2837	0.5403
+0.1394	0.9881
+0.3272	0.9013
+-0.5891	0.8262
+0.3582	0.8262
+select distinct a from t1 where cos(a)<=cos(b) order by a desc;
+a
+180
+30
+0
