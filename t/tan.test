@@ -1,0 +1,7 @@
+drop table if exists t1;
+create table t1(a int,b float);
+insert into t1 values(0,0);
+insert into t1 values(0,360),(30,390),(90,450),(180,270),(180,180);
+select tan(a),tan(b) from t1;
+select tan(a)*tan(b),tan(tan(a)) as c from t1;
+select distinct a from t1 where tan(a)<=tan(b) order by a desc;

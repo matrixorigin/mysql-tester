@@ -26,7 +26,7 @@ drop table if exists t1;
 create table t1(a date);
 insert into t1 values('2021-12-23');
 insert into t1 values('2021-12-24');
-select toyear(a) from t1;
+select year(a) from t1;
 select year(a) from t1;
 drop table if exists t1;
 create table t1(a int ,b float);
