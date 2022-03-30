@@ -1,0 +1,33 @@
+drop table if exists t1;
+create table t1(a int,b float);
+insert into t1 values(0,0),(-15,-20),(-22,-12.5);
+insert into t1 values(0,360),(30,390),(90,450),(180,270),(180,180);
+select atan(a*pi()/180) as atana,atan(b*pi()/180) atanb from t1;
+atana	atanb
+0.0000	0.0000
+-0.2561	-0.3358
+-0.3666	-0.2148
+0.0000	1.4130
+0.4823	1.4249
+1.0039	1.4442
+1.2626	1.3617
+1.2626	1.2626
+select atan(a*pi()/180)*atan(b*pi()/180) as atanab,atan(atan(a*pi()/180)) as c from t1;
+atanab	c
+0.0000	0.0000
+0.0860	-0.2507
+0.0787	-0.3514
+0.0000	0.0000
+0.6873	0.4494
+1.4498	0.7873
+1.7193	0.9010
+1.5942	0.9010
+select b from t1 where atan(a*pi()/180)<=atan(b*pi()/180)  order by a;
+b
+-12.5000
+0.0000
+360.0000
+390.0000
+450.0000
+270.0000
+180.0000
