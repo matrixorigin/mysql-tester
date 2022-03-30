@@ -1,0 +1,10 @@
+drop table if exists t1;
+create table t1(a varchar(12),c char(30));
+insert into t1 values('sdfad  ','2022-02-02 22:22:22');
+insert into t1 values('  sdfad  ','2022-02-02 22:22:22');
+insert into t1 values('adsf  sdfad','2022-02-02 22:22:22');
+insert into t1 values('    sdfad','2022-02-02 22:22:22');
+select reverse(a),reverse(c) from t1;
+select a from t1 where reverse(a) like 'daf%';
+select reverse('ABCD') as ABCD,reverse(c) as B from t1;
+select reverse(a) reversea,reverse(reverse(a)) normala from t1;
