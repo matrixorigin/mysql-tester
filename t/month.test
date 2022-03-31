@@ -1,0 +1,7 @@
+drop table if exists t1;
+create table t1(a date,b datetime);
+insert into t1 values("2022-06-01","2022-07-01 00:00:00");
+insert into t1 values("2022-12-31","2011-01-31 12:00:00");
+select month(a),month(b) from t1;
+select * from t1 where month(a)>month(b);
+select * from t1 where month(a) between 1 and 6;
