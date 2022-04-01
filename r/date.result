@@ -2,13 +2,14 @@ drop table if exists t1;
 create table t1(a date,b datetime);
 insert into t1 values("2022-06-01","2022-07-01 00:00:00");
 insert into t1 values("2022-12-31","2011-01-31 12:00:00");
-select month(a),month(b) from t1;
-month(a)	month(b)
+insert into t1 values("2022-06-11","2022-07-01 00:00:00");
+select date(a),date(b) from t1;
+date(a)	date(b)
 6	7
 12	1
-select * from t1 where month(a)>month(b);
+select * from t1 where date(a)>date(b);
 a	b
 2022-12-31	2011-01-31 12:00:00
-select * from t1 where month(a) between 1 and 6;
+select * from t1 where date(a) between "2022-06-01"  and "2022-07-01";
 a	b
 2022-06-01	2022-07-01 00:00:00
