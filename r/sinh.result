@@ -1,0 +1,33 @@
+drop table if exists t1;
+create table t1(a int,b float);
+insert into t1 values(0,0),(-15,-20),(-22,-12.5);
+insert into t1 values(0,360),(30,390),(90,450),(180,270),(180,180);
+select sinh(a*pi()/180) as sinha,sinh(b*pi()/180) sinhb from t1;
+sinha	sinhb
+0.0000	0.0000
+-0.2648	-0.3562
+-0.3935	-0.2199
+0.0000	267.7449
+0.5479	451.9790
+2.3013	1287.9851
+11.5487	55.6544
+11.5487	11.5487
+select sinh(a*pi()/180)*sinh(b*pi()/180) as sinhab,sinh(sinh(a*pi()/180)) as c from t1;
+sinhab	c
+0.0000	0.0000
+0.0943	-0.2679
+0.0865	-0.4037
+0.0000	0.0000
+247.6183	0.5757
+2964.0386	4.9435
+642.7381	51823.1467
+133.3734	51823.1467
+select b from t1 where sinh(a*pi()/180)<=sinh(b*pi()/180)  order by a;
+b
+-12.5000
+0.0000
+360.0000
+390.0000
+450.0000
+270.0000
+180.0000
