@@ -1,0 +1,28 @@
+drop table if exists t1;
+CREATE TABLE t1(
+Employee_Name VARCHAR(100) NOT NULL,
+Working_At VARCHAR(20) NOT NULL,
+Work_Location  VARCHAR(20) NOT NULL,
+Joining_Date DATE NOT NULL,
+Annual_Income INT  NOT NULL);
+INSERT INTO t1
+VALUES
+('Amit Khan', 'XYZ Digital', 'Kolkata', '2019-10-06', 350000),
+('Shreetama Pal', 'ABC Corp.', 'Kolkata', '2018-12-16', 500000),
+('Aniket Sharma', 'PQR Soln.', 'Delhi', '2020-01-11', 300000),
+('Maitree Jana', 'XYZ Digital', 'Kolkata', '2019-05-01', 400000),
+('Priyanka Ojha', 'ABC Corp.', 'Delhi', '2019-02-13', 350000),
+('Sayani Mitra', 'XYZ Digital', 'Kolkata', '2019-09-15', 320000),
+('Nitin Dey', 'PQR Soln.', 'Delhi', '2019-10-06', 250000),
+('Sujata Samanta', 'PQR Soln.', 'Kolkata', '2020-10-06', 350000),
+('Sudip Majhi', 'ABC Corp.', 'Delhi', '2018-10-30', 600000),
+('Sanjoy Kohli', 'XYZ Digital', 'Delhi', '2019-04-18', 450000);
+SELECT Work_Location, BIT_XOR(Annual_Income) AS BITORINCOME FROM t1 Group By Work_Location;
+Work_Location	BITORINCOME
+Kolkata	350624
+Delhi	912976
+SELECT Working_At, BIT_XOR(Annual_Income) AS BITORINCOME FROM t1 group by Working_At;
+Working_At	BITORINCOME
+XYZ Digital	94816
+ABC Corp.	774608
+PQR Soln.	136256
