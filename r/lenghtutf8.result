@@ -1,0 +1,10 @@
+drop table if exists t1;
+create table t1(a char(10),b varchar(10));
+insert into t1 values('测试','かな');
+insert into t1 values('한국어','ਪਜ');
+insert into t1 values('测  试','te  st');
+select lengthUTF8(a) as la,lengthUTF8(b) as lb from t1;
+la	lb
+2	2
+3	2
+4	6
