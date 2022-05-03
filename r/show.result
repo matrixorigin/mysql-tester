@@ -14,5 +14,5 @@ t2
 show columns from t1;
 Field	Type	Null	Key	Default	Extra
 id	int(32)				
-str	varchar(10)			NULL	
+str	char(10)			NULL	
 name	varchar(10)			NULL	
