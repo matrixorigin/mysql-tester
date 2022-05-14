@@ -132,12 +132,12 @@ VALUES
 ('Sudip Majhi', 'ABC Corp.', 'Delhi', '2018-10-30', 600000),
 ('Sanjoy Kohli', 'XYZ Digital', 'Delhi', '2019-04-18', 450000);
 SELECT Working_At, BIT_AND(Annual_Income) AS BITORINCOME FROM t1 group by Working_At;
-Working_At	BITORINCOME
+working_at	bitorincome
 XYZ Digital	262144
 ABC Corp.	65792
 PQR Soln.	4096
 SELECT Work_Location, BIT_AND(Annual_Income) AS BITORINCOME FROM t1 Group By Work_Location;
-Work_Location	BITORINCOME
+work_location	bitorincome
 Kolkata	262144
 Delhi	0
 drop table if exists t1;
@@ -160,11 +160,11 @@ VALUES
 ('Sudip Majhi', 'ABC Corp.', 'Delhi', '2018-10-30', 600000),
 ('Sanjoy Kohli', 'XYZ Digital', 'Delhi', '2019-04-18', 450000);
 SELECT Work_Location, BIT_AND(Annual_Income) AS BITORINCOME FROM t1 Group By Work_Location;
-Work_Location	BITORINCOME
+work_location	bitorincome
 Kolkata	262144
 Delhi	0
 SELECT Working_At, BIT_AND(Annual_Income) AS BITORINCOME FROM t1 group by Working_At;
-Working_At	BITORINCOME
+working_at	bitorincome
 XYZ Digital	262144
 ABC Corp.	65792
 PQR Soln.	4096
@@ -188,11 +188,11 @@ VALUES
 ('Sudip Majhi', 'ABC Corp.', 'Delhi', '2018-10-30', 600000),
 ('Sanjoy Kohli', 'XYZ Digital', 'Delhi', '2019-04-18', 450000);
 SELECT Work_Location, BIT_XOR(Annual_Income) AS BITORINCOME FROM t1 Group By Work_Location;
-Work_Location	BITORINCOME
+work_location	bitorincome
 Kolkata	350624
 Delhi	912976
 SELECT Working_At, BIT_XOR(Annual_Income) AS BITORINCOME FROM t1 group by Working_At;
-Working_At	BITORINCOME
+working_at	bitorincome
 XYZ Digital	94816
 ABC Corp.	774608
 PQR Soln.	136256
@@ -311,7 +311,7 @@ VALUES
 (5,'Riya Jain', 'IX'),
 (6,'Tapan Samanta', 'X');
 SELECT Student_id, Student_name,LPAD(Student_Class, 10, ' _') AS LeftPaddedString FROM t1;
-Student_id	Student_name	LeftPaddedString
+student_id	student_name	leftpaddedstring
 1	Ananya Majumdar	 _ _ _ _IX
 2	Anushka Samanta	 _ _ _ _ X
 3	Aniket Sharma	 _ _ _ _XI
@@ -319,7 +319,7 @@ Student_id	Student_name	LeftPaddedString
 5	Riya Jain	 _ _ _ _IX
 6	Tapan Samanta	 _ _ _ _ X
 SELECT Student_id, lpad(Student_name,4,'new') AS LeftPaddedString FROM t1;
-Student_id	LeftPaddedString
+student_id	leftpaddedstring
 1	Anan
 2	Anus
 3	Anik
@@ -327,7 +327,7 @@ Student_id	LeftPaddedString
 5	Riya
 6	Tapa
 SELECT Student_id, lpad(Student_name,-4,'new') AS LeftPaddedString FROM t1;
-Student_id	LeftPaddedString
+student_id	leftpaddedstring
 1	NULL
 2	NULL
 3	NULL
@@ -335,7 +335,7 @@ Student_id	LeftPaddedString
 5	NULL
 6	NULL
 SELECT Student_id, lpad(Student_name,0,'new') AS LeftPaddedString FROM t1;
-Student_id	LeftPaddedString
+student_id	leftpaddedstring
 1	
 2	
 3	
@@ -353,7 +353,7 @@ VALUES
 (5,'Riya Jain', 'IX'),
 (6,'Tapan Samanta', 'X');
 SELECT Student_id, Student_name,RPAD(Student_Class, 10, ' _') AS LeftPaddedString FROM t1;
-Student_id	Student_name	LeftPaddedString
+student_id	student_name	leftpaddedstring
 1	Ananya Majumdar	IX _ _ _ _
 2	Anushka Samanta	X _ _ _ _ 
 3	Aniket Sharma	XI _ _ _ _
@@ -361,7 +361,7 @@ Student_id	Student_name	LeftPaddedString
 5	Riya Jain	IX _ _ _ _
 6	Tapan Samanta	X _ _ _ _ 
 SELECT Student_id, rpad(Student_name,4,'new') AS LeftPaddedString FROM t1;
-Student_id	LeftPaddedString
+student_id	leftpaddedstring
 1	Anan
 2	Anus
 3	Anik
@@ -369,7 +369,7 @@ Student_id	LeftPaddedString
 5	Riya
 6	Tapa
 SELECT Student_id, rpad(Student_name,-4,'new') AS LeftPaddedString FROM t1;
-Student_id	LeftPaddedString
+student_id	leftpaddedstring
 1	NULL
 2	NULL
 3	NULL
@@ -377,7 +377,7 @@ Student_id	LeftPaddedString
 5	NULL
 6	NULL
 SELECT Student_id, rpad(Student_name,0,'new') AS LeftPaddedString FROM t1;
-Student_id	LeftPaddedString
+student_id	leftpaddedstring
 1	
 2	
 3	
@@ -403,7 +403,7 @@ VALUES
 ('   Ankana Jana', '2018-08-17'),
 ('  Shreya Ghosh', '2020-09-10') ;
 SELECT LTRIM( Employee_name) LTrimName,RTRIM(Employee_name) AS RTrimName FROM t1 order by  RTrimName desc;
-LTrimName	RTrimName
+ltrimname	rtrimname
 Shreya Ghosh	  Shreya Ghosh
 Riya Jain	  Riya Jain
 Deepak Sharma	   Deepak Sharma
@@ -414,7 +414,7 @@ Anik Das	   Anik Das
 Tapan Samanta	    Tapan Samanta
 Ananya Majumdar	     Ananya Majumdar
 SELECT LTRIM(RTRIM(Employee_name)) as TrimName from t1 where Employee_name like '%Ani%' order by TrimName asc;
-TrimName
+trimname
 Anik Das
 Aniket Sharma
 drop table if exists t1;
@@ -496,7 +496,7 @@ VALUES
 INSERT INTO t1
 (Employee_name, Joining_Date ) values('     ','2014-12-01');
 select * from t1 where Employee_name=space(5);
-Employee_name	Joining_Date
+employee_name	joining_date
      	2014-12-01
 drop table if exists t1;
 CREATE TABLE t1(a INT,b VARCHAR(100),c CHAR(20));
@@ -523,10 +523,10 @@ drop table if exists t1;
 CREATE TABLE t1(PlayerName VARCHAR(100) NOT NULL,RunScored INT NOT NULL,WicketsTaken INT NOT NULL);
 INSERT INTO t1 VALUES('KL Rahul', 52, 0 ),('Hardik Pandya', 30, 1 ),('Ravindra Jadeja', 18, 2 ),('Washington Sundar', 10, 1),('D Chahar', 11, 2 ),  ('Mitchell Starc', 0, 3);
 SELECT STDDEV_POP(RunScored) as Pop_Standard_Deviation FROM t1;
-Pop_Standard_Deviation
+pop_standard_deviation
 16.8762
 SELECT  STDDEV_POP(WicketsTaken) as Pop_Std_Dev_Wickets FROM t1;
-Pop_Std_Dev_Wickets
+pop_std_dev_wickets
 0.9574
 drop table if exists t1;
 create table t1(a int,b float);

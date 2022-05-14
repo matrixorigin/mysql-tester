@@ -24,13 +24,13 @@ insert into t2 values ( 'Computer', 2,2000, 1200),
 ( 'Calculator', 2, 2000,75),
 ( 'Phone', 3, 2003,10);
 select userID,spID,score from t1 where userID=spID and userID<>score;
-userID	spID	score
+userid	spid	score
 1	1	5
 select userID,spID,score from t1 where userID=spID and userID!=score;
-userID	spID	score
+userid	spid	score
 1	1	5
 select userID,spID,score from t1 where userID between spID and score;
-userID	spID	score
+userid	spid	score
 1	1	1
 2	2	2
 3	3	3
@@ -38,36 +38,36 @@ userID	spID	score
 6	4	10
 11	5	99
 select userID,spID,score from t1 where userID not between spID and score;
-userID	spID	score
+userid	spid	score
 1	2	4
 select * from t1 where userID between 3 and 6;
-spID	userID	score
+spid	userid	score
 3	3	3
 4	6	10
 select userID,spID,score from t1 where spID>=userID*score;
-userID	spID	score
+userid	spid	score
 1	1	1
 select userID,score,spID from t1 where userID<=score/spID;
-userID	score	spID
+userid	score	spid
 1	1	1
 1	4	2
 1	5	1
 11	99	5
 select spID,userID,score from t1 where spID>(userID-1);
-spID	userID	score
+spid	userid	score
 1	1	1
 2	2	2
 2	1	4
 3	3	3
 1	1	5
 select spID,userID,score from t1 where score<(spID*userID+1);
-spID	userID	score
+spid	userid	score
 1	1	1
 2	2	2
 3	3	3
 4	6	10
 select userID, AVG(score) from t1 WHERE spID=2 group by userID order by userID;
-userID	avg(score)
+userid	avg(score)
 1	4.0000
 2	2.0000
 select product, SUM(profit) from t2 where year>1999 group by product order by product desc;
@@ -95,7 +95,7 @@ TV	350
 Computer	4200
 Calculator	225
 select * from t1 where 2<10;
-spID	userID	score
+spid	userid	score
 1	1	1
 2	2	2
 2	1	4
@@ -104,14 +104,14 @@ spID	userID	score
 4	6	10
 5	11	99
 select userID, userID DIV 2 as user_div, userID%2 as user_percent, userID MOD 2 as user_mod from t1 WHERE userID > 3;
-userID	user_div	user_percent	user_mod
+userid	user_div	user_percent	user_mod
 6	3	0	0
 11	5	1	1
 select * from t1 where userID-2>2 && (userID+spID)/3<>0 && score MOD 2 > 0;
-spID	userID	score
+spid	userid	score
 5	11	99
 select * from t1 where spID >2 && userID < 6 && score != 1;
-spID	userID	score
+spid	userid	score
 3	3	3
 drop table if exists t2;
 create table t2(c1 int, c2 int);
@@ -157,21 +157,21 @@ Databases
 drop database likedb;
 drop database dblike;
 SELECT * FROM t1 where t1.userID<6 OR NOT t1.userID;
-spID	userID	score
+spid	userid	score
 1	1	1
 2	2	2
 2	1	4
 3	3	3
 1	1	5
 SELECT * FROM t1 where NOT t1.userID OR t1.userID<6;
-spID	userID	score
+spid	userid	score
 1	1	1
 2	2	2
 2	1	4
 3	3	3
 1	1	5
 SELECT * FROM t1 where NOT t1.userID || t1.userID<6;
-spID	userID	score
+spid	userid	score
 1	1	1
 2	2	2
 2	1	4
