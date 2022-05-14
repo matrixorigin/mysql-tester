@@ -41,7 +41,7 @@ INSERT INTO t1 VALUES (1,1,5);
 INSERT INTO t1 VALUES (4,6,10);
 INSERT INTO t1 VALUES (5,11,99);
 select * from t1 where CAST(spID AS CHAR)='1';
-spID	userID	score
+spid	userid	score
 1	1	1
 1	1	5
 select CAST(userID AS CHAR) userid_cast from t1 where CAST(spID AS CHAR)='1';
@@ -49,7 +49,7 @@ userid_cast
 1
 1
 select spID+score from t1;
-spID + score
+spid + score
 2
 4
 6
