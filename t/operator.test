@@ -58,16 +58,6 @@ insert into t3 values ("a"),
 ("C:\Program Files(x86)"),
 ("C:\\Program Files(x86)");
 select * from t3;
-create database if not exists likedb;
-create database if not exists dblike;
-show databases like 'like%';
-show databases like "%like%";
-show databases like "%aa%";
-drop database likedb;
-drop database dblike;
-SELECT * FROM t1 where t1.userID<6 OR NOT t1.userID;
-SELECT * FROM t1 where NOT t1.userID OR t1.userID<6;
-SELECT * FROM t1 where NOT t1.userID || t1.userID<6;
 drop table if exists t1;
 create table t1 (a int);
 insert into t1 values (0),(1),(NULL);
@@ -100,8 +90,4 @@ select * from t2 where a in (2,4);
 select * from t2 where a not in (2,4);
 select * from t2 where c in (2.001,2.002);
 select * from t2 where b not in ('e',"f");
-select sum(a),c from t2 where a in (1,2) and d in ('2022-02-10','2022-02-11') group by c order by c;
-select * from t2 where d in ('20220208','2022-02-09');
-select * from t2 where e not in ('2022-02-09 12:00:00') and a in (4,5);
-select sum(a) as suma,e from t2 where e not in ('2022-02-09 12:00:00') and a in (4,5) group by e order by suma;
 select * from t2 where c in (2.001,3);

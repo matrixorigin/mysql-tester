@@ -1,4 +1,3 @@
-drop table if exists tbl1,tbl2;
 create table tbl1 (col_1a tinyint, col_1b smallint, col_1c int, col_1d bigint, col_1e char(10) not null);
 insert into tbl1 values (0,1,1,7,"a");
 insert into tbl1 values (0,1,2,8,"b");
@@ -47,11 +46,9 @@ select round(a*b) from t1;
 select a,floor(b) from t1;
 select sum(round(b)) from t1;
 select sum(floor(b)) from t1;
-select a,sum(floor(b)) from t1 group by a order by a;
 select a,floor(b) as floorb from t1 order by floorb desc;
 select a,avg(round(b)) as roundb from t1 where a>3 group by a order by roundb;
 select a,avg(round(b)) as roundb from t1 where a in (3,5,7) group by a order by roundb;
-select a,round(b,2),max(b) from t1 group by b order by a;
 drop table if exists t1;
 CREATE TABLE IF NOT EXISTS t1 (
 pub_id varchar(8) COLLATE latin1_general_ci NOT NULL DEFAULT '',
