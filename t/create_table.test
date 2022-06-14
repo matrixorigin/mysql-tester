@@ -2,7 +2,7 @@ create table table01(a TINYINT primary key, b SMALLINT SIGNED, c INT UNSIGNED,d 
 create table table15 (a varchar(5) default 'abcde');
 create temporary table table05 ( a int, b char(10));
 create table table06 (a int primary key, b varchar(10));
-create table table10 (a int primary key, b varchar(10)) checksum=0 COMMENT="asdf";
+create table table10 (a int primary key, b varchar(10));
 create table `测试表` (`测试1` int);
 create table `table11 ` (a int);
 create table table12 (`a ` int);
